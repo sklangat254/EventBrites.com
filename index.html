@@ -87,7 +87,7 @@ img{display:block;max-width:100%;}
 .act-btn:hover{background:#e0e0d5;}
 .event-title{font-family:'DM Serif Display',serif;font-size:34px;font-weight:400;line-height:1.2;margin-bottom:20px;}
 .org-row{display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:20px;}
-.org-avatar{width:48px;height:48px;border-radius:50%;background:#dcfce7;border:2px solid var(--green-l);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.org-avatar{width:48px;height:48px;border-radius:50%;background:#dcfce7;border:2px solid var(--green-l);overflow:hidden;flex-shrink:0;}
 .org-details{flex:1;}
 .org-by{font-size:13px;color:var(--text-l);}
 .org-name{font-size:15px;font-weight:700;color:var(--green);cursor:pointer;}
@@ -197,46 +197,107 @@ img{display:block;max-width:100%;}
 .faq-a{display:none;padding:0 18px 16px;font-size:14px;color:var(--text-l);line-height:1.7;}
 .faq-item.open .faq-a{display:block;}
 
-/* ── Registration Form Modal ── */
+/* ── Modals ── */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;padding:16px;backdrop-filter:blur(4px);}
 .modal-overlay.open{opacity:1;pointer-events:all;}
 .modal-box{background:#fff;border-radius:20px;max-width:580px;width:100%;position:relative;transform:translateY(24px);transition:transform .25s;max-height:92vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.2);}
 .modal-overlay.open .modal-box{transform:translateY(0);}
-.modal-header{background:linear-gradient(135deg,#1b4332,#2d6a4f);padding:28px 28px 24px;border-radius:20px 20px 0 0;color:#fff;position:sticky;top:0;z-index:10;}
-.modal-header h2{font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;margin-bottom:4px;}
-.modal-header p{font-size:13px;opacity:.8;}
-.modal-close{position:absolute;top:18px;right:20px;background:rgba(255,255,255,.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;}
+.modal-header{background:linear-gradient(135deg,#1b4332,#2d6a4f);padding:22px 28px 18px;border-radius:20px 20px 0 0;color:#fff;position:sticky;top:0;z-index:10;}
+.modal-header h2{font-family:'DM Serif Display',serif;font-size:20px;font-weight:400;margin-bottom:2px;}
+.modal-header p{font-size:12px;opacity:.8;}
+.modal-close{position:absolute;top:16px;right:18px;background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;}
 .modal-close:hover{background:rgba(255,255,255,.3);}
-.modal-body{padding:24px 28px 28px;}
-.form-section{margin-bottom:28px;}
-.form-section-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--green);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #dcfce7;}
-.form-group{margin-bottom:18px;}
+
+/* ── Step indicator ── */
+.step-bar{display:flex;align-items:center;gap:0;padding:14px 28px;border-bottom:1px solid var(--border);background:#faf9f5;}
+.step-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text-xl);}
+.step-item.active{color:var(--green);}
+.step-item.done{color:var(--green-l);}
+.step-num{width:24px;height:24px;border-radius:50%;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+.step-item.active .step-num{background:var(--green);color:#fff;border-color:var(--green);}
+.step-item.done .step-num{background:var(--green-l);color:#fff;border-color:var(--green-l);}
+.step-sep{flex:1;height:1.5px;background:var(--border);margin:0 10px;}
+.step-sep.done{background:var(--green-l);}
+
+.modal-body{padding:20px 28px 28px;}
+.form-section{margin-bottom:24px;}
+.form-section-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--green);margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #dcfce7;}
+.form-group{margin-bottom:16px;}
 .form-group label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:var(--text);}
 .form-group label .req{color:#e53e3e;margin-left:2px;}
 .form-group input,.form-group textarea,.form-group select{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-family:inherit;font-size:14px;color:var(--text);outline:none;transition:border-color .15s;background:#faf9f5;}
 .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--green);background:#fff;}
-.form-group textarea{resize:vertical;min-height:90px;}
-.radio-group,.checkbox-group{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
-.radio-opt,.check-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s;font-size:14px;font-weight:500;}
-.radio-opt:hover,.check-opt:hover{border-color:var(--green-l);background:#f5faf7;}
-.radio-opt.selected,.check-opt.selected{border-color:var(--green);background:#f0faf5;}
-.radio-opt input,.check-opt input{accent-color:var(--green);width:16px;height:16px;flex-shrink:0;}
-.check-group-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px;}
-.size-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:6px;}
-.size-opt{border:1.5px solid var(--border);border-radius:10px;padding:12px 10px;text-align:center;cursor:pointer;transition:all .15s;}
+.form-group textarea{resize:vertical;min-height:80px;}
+.radio-group{display:flex;flex-direction:column;gap:8px;margin-top:6px;}
+.radio-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s;font-size:14px;font-weight:500;}
+.radio-opt:hover{border-color:var(--green-l);background:#f5faf7;}
+.radio-opt.selected{border-color:var(--green);background:#f0faf5;}
+.radio-opt input{accent-color:var(--green);width:16px;height:16px;flex-shrink:0;}
+.check-group-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;}
+.check-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s;font-size:13px;font-weight:500;}
+.check-opt:hover{border-color:var(--green-l);background:#f5faf7;}
+.check-opt.selected{border-color:var(--green);background:#f0faf5;}
+.check-opt input{accent-color:var(--green);width:15px;height:15px;flex-shrink:0;}
+
+/* ── Size grid (vendor-category-aware) ── */
+.size-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px;}
+.size-opt{border:1.5px solid var(--border);border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .15s;position:relative;}
 .size-opt:hover{border-color:var(--green-l);}
 .size-opt.selected{border-color:var(--green);background:#f0faf5;}
 .size-opt .size-label{font-size:13px;font-weight:700;color:var(--text);}
-.size-opt .size-price{font-size:12px;color:var(--text-l);margin-top:3px;}
-.terms-box{background:#f5f7f3;border:1.5px solid var(--border);border-radius:12px;padding:16px;font-size:13px;color:var(--text-l);line-height:1.7;margin-bottom:16px;}
-.terms-box ul{padding-left:16px;margin-top:8px;}
-.terms-box li{margin-bottom:6px;}
-.submit-btn{width:100%;background:var(--green);color:#fff;border:none;border-radius:50px;padding:16px;font-size:16px;font-weight:700;cursor:pointer;transition:background .15s;margin-top:8px;}
+.size-opt .size-price{font-size:12px;color:var(--green);margin-top:3px;font-weight:700;}
+.size-opt .size-note{font-size:10px;color:var(--text-xl);margin-top:2px;}
+
+/* ── Chime payment box ── */
+.chime-box{background:#f0faf5;border:1.5px solid #86efac;border-radius:12px;padding:16px 18px;margin-top:6px;}
+.chime-tag{font-family:monospace;font-size:20px;font-weight:700;color:var(--green);letter-spacing:.5px;margin:4px 0 10px;}
+.chime-note{font-size:12px;color:var(--text-l);}
+.chime-selected-badge{display:inline-flex;align-items:center;gap:6px;background:#dcfce7;border:1.5px solid #86efac;border-radius:50px;padding:5px 14px;font-size:13px;font-weight:700;color:#14532d;margin-top:6px;}
+
+/* ── Payment step ── */
+.payment-step{padding:0;}
+.amount-display{background:linear-gradient(135deg,#1b4332,#2d6a4f);border-radius:14px;padding:20px;color:#fff;text-align:center;margin-bottom:20px;}
+.amount-display .amount-label{font-size:13px;opacity:.8;margin-bottom:4px;}
+.amount-display .amount-value{font-family:'DM Serif Display',serif;font-size:42px;font-weight:400;margin-bottom:4px;}
+.amount-display .amount-breakdown{font-size:12px;opacity:.7;}
+.pay-instructions{background:#f0faf5;border:1.5px solid #86efac;border-radius:14px;padding:18px;margin-bottom:20px;}
+.pay-instructions h4{font-size:14px;font-weight:700;color:var(--green);margin-bottom:10px;}
+.pay-step-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;font-size:13px;color:var(--text-l);}
+.pay-step-num{width:22px;height:22px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px;}
+.chime-tag-big{font-family:monospace;font-size:22px;font-weight:700;color:var(--green);background:#fff;border:1.5px solid #86efac;border-radius:10px;padding:10px 16px;text-align:center;letter-spacing:.5px;margin:10px 0;}
+
+/* ── Upload area ── */
+.upload-area{border:2px dashed var(--border);border-radius:12px;padding:24px;text-align:center;cursor:pointer;transition:all .2s;background:#faf9f5;position:relative;}
+.upload-area:hover,.upload-area.dragover{border-color:var(--green);background:#f0faf5;}
+.upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.upload-icon{font-size:32px;margin-bottom:8px;}
+.upload-label{font-size:14px;font-weight:600;color:var(--green);}
+.upload-sub{font-size:12px;color:var(--text-xl);margin-top:4px;}
+.upload-preview{margin-top:12px;border-radius:10px;overflow:hidden;max-height:180px;display:none;}
+.upload-preview img{width:100%;height:100%;object-fit:cover;}
+.upload-filename{margin-top:8px;font-size:12px;color:var(--green);font-weight:600;display:none;}
+
+/* ── Terms ── */
+.terms-box{background:#f5f7f3;border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;font-size:13px;color:var(--text-l);line-height:1.7;margin-bottom:14px;}
+.terms-box ul{padding-left:16px;margin-top:6px;}
+.terms-box li{margin-bottom:5px;}
+
+/* ── Buttons ── */
+.submit-btn{width:100%;background:var(--green);color:#fff;border:none;border-radius:50px;padding:15px;font-size:16px;font-weight:700;cursor:pointer;transition:background .15s;margin-top:8px;}
 .submit-btn:hover{background:var(--green-h);}
 .submit-btn:disabled{background:#9ca38a;cursor:not-allowed;}
+.back-btn{width:100%;background:transparent;color:var(--text-l);border:1.5px solid var(--border);border-radius:50px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;margin-top:8px;}
+.back-btn:hover{border-color:var(--text);color:var(--text);}
 .form-note{font-size:12px;color:var(--text-xl);text-align:center;margin-top:10px;}
 
-/* ── Sign In Modal ── */
+/* ── Success ── */
+.success-inner{text-align:center;padding:16px 0;}
+.success-icon{width:72px;height:72px;background:#dcfce7;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 16px;}
+.success-inner h3{font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;margin-bottom:8px;color:var(--green);}
+.success-inner p{font-size:14px;color:var(--text-l);line-height:1.7;}
+.success-inner .ref{font-size:12px;background:#f0faf5;border:1px solid #86efac;border-radius:8px;padding:8px 14px;margin:14px 0;font-weight:600;color:#14532d;display:inline-block;}
+
+/* ── Sign In / Share modals ── */
 .signin-modal-box{background:#fff;border-radius:20px;padding:32px;max-width:420px;width:100%;position:relative;transform:translateY(24px);transition:transform .25s;box-shadow:0 24px 80px rgba(0,0,0,.2);}
 .modal-overlay.open .signin-modal-box{transform:translateY(0);}
 .modal-close-plain{position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;color:var(--text-l);cursor:pointer;}
@@ -255,8 +316,6 @@ img{display:block;max-width:100%;}
 .google-btn:hover{background:#faf9f5;}
 .signup-link{text-align:center;font-size:14px;margin-top:16px;color:var(--text-l);}
 .signup-link span{color:var(--green);font-weight:700;cursor:pointer;}
-
-/* ── Share Modal ── */
 .share-url-box{display:flex;border:1.5px solid var(--border);border-radius:50px;overflow:hidden;margin-bottom:20px;background:#faf9f5;}
 .share-url-box input{flex:1;border:none;outline:none;padding:10px 16px;font-size:13px;color:var(--text-l);background:transparent;}
 .share-url-box button{background:var(--green);color:#fff;border:none;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;border-radius:0 50px 50px 0;}
@@ -265,12 +324,9 @@ img{display:block;max-width:100%;}
 .share-opt:hover{border-color:var(--green);color:var(--green);}
 .share-opt .sicon{font-size:24px;margin-bottom:4px;}
 
-/* ── Success overlay ── */
-.success-inner{text-align:center;padding:16px 0;}
-.success-icon{width:72px;height:72px;background:#dcfce7;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 16px;}
-.success-inner h3{font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;margin-bottom:8px;color:var(--green);}
-.success-inner p{font-size:14px;color:var(--text-l);line-height:1.7;}
-.success-inner .ref{font-size:12px;background:#f0faf5;border:1px solid #86efac;border-radius:8px;padding:8px 14px;margin:14px 0;font-weight:600;color:#14532d;}
+/* ── Spinner ── */
+.spinner{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px;}
+@keyframes spin{to{transform:rotate(360deg);}}
 
 /* ── Footer ── */
 footer{background:var(--footer);color:#a7c9b5;}
@@ -280,20 +336,16 @@ footer{background:var(--footer);color:#a7c9b5;}
 .fc-link:hover{color:#fff;}
 .footer-bottom{max-width:1280px;margin:0 auto;padding:20px 24px 32px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;}
 .footer-brand{font-family:'DM Serif Display',serif;font-size:22px;color:#fff;display:flex;gap:8px;align-items:center;}
-.footer-brand .pipe{color:#2d6a4f;font-weight:300;}
-.footer-brand .sub{font-size:13px;font-weight:400;font-family:'DM Sans',sans-serif;color:#7aab8e;}
+.footer-brand .pipe{color:#2d6a4f;}
+.footer-brand .sub{font-size:13px;font-family:'DM Sans',sans-serif;color:#7aab8e;}
 .footer-copy{font-size:13px;color:#5a8a6e;}
 
-/* ── Mobile bottom bar ── */
+/* ── Mobile bar ── */
 .mob-bar{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:12px 16px 20px;align-items:center;justify-content:space-between;z-index:300;box-shadow:0 -4px 20px rgba(0,0,0,.1);}
 .mb-label{font-size:13px;font-weight:800;}
 .mb-date{font-size:12px;color:var(--text-l);}
 .mb-btn{background:var(--green);color:#fff;border:none;border-radius:50px;padding:13px 24px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s;}
 .mb-btn:hover{background:var(--green-h);}
-
-/* ── Loading spinner ── */
-.spinner{display:inline-block;width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:8px;}
-@keyframes spin{to{transform:rotate(360deg);}}
 
 /* ── Responsive ── */
 @media(max-width:1024px){.page-wrap{grid-template-columns:1fr 260px;gap:24px;}.browse-grid{grid-template-columns:repeat(2,1fr);}.help-cats{grid-template-columns:repeat(2,1fr);}}
@@ -305,7 +357,7 @@ footer{background:var(--footer);color:#a7c9b5;}
   .eli-thumb{width:90px;height:90px;}
   .footer-top{grid-template-columns:1fr 1fr;padding:32px 16px 28px;gap:20px;}.footer-bottom{padding:18px 16px 28px;}
   .browse-grid{grid-template-columns:1fr;}.help-cats{grid-template-columns:1fr 1fr;}.tc-img{width:90px;}
-  .pricing-grid{grid-template-columns:1fr;}.check-group-grid{grid-template-columns:1fr;}.size-grid{grid-template-columns:1fr 1fr 1fr;}
+  .pricing-grid{grid-template-columns:1fr;}.check-group-grid{grid-template-columns:1fr;}.size-grid{grid-template-columns:repeat(3,1fr);}
   .modal-box{border-radius:16px 16px 0 0;max-height:88vh;align-self:flex-end;}.modal-overlay{align-items:flex-end;padding:0;}
   .modal-header{border-radius:16px 16px 0 0;}
 }
@@ -373,7 +425,6 @@ footer{background:var(--footer);color:#a7c9b5;}
 
   <div class="page-wrap">
     <div class="main-col">
-
       <div class="status-row">
         <div class="live-badge"><span class="pulse"></span> Accepting Vendor Applications</div>
         <div class="action-btns">
@@ -400,65 +451,50 @@ footer{background:var(--footer);color:#a7c9b5;}
       </div>
 
       <div class="event-meta">
-        <div class="meta-row">
-          <span class="meta-ico">📍</span>
-          <span><a class="meta-link" onclick="openMapsAtlanta()">Patterson Park</a> &nbsp;·&nbsp; 770 Deshawn Ave SW, Atlanta, GA 30314</span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-ico">📅</span>
-          <span>Friday – Sunday, June 12–14, 2026</span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-ico">🕐</span>
-          <span>Fri Jun 12: 1:00 PM – 5:00 PM &nbsp;·&nbsp; Sat Jun 13: 10:00 AM – 5:00 PM &nbsp;·&nbsp; Sun Jun 14: 10:00 AM – 5:00 PM</span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-ico">♿</span>
-          <span>Fully wheelchair accessible · Ramp access · Ample parking</span>
-        </div>
+        <div class="meta-row"><span class="meta-ico">📍</span><span><a class="meta-link" onclick="openMapsAtlanta()">Patterson Park</a> &nbsp;·&nbsp; 770 Deshawn Ave SW, Atlanta, GA 30314</span></div>
+        <div class="meta-row"><span class="meta-ico">📅</span><span>Friday – Sunday, June 12–14, 2026</span></div>
+        <div class="meta-row"><span class="meta-ico">🕐</span><span>Fri Jun 12: 1:00 PM – 5:00 PM &nbsp;·&nbsp; Sat Jun 13: 10:00 AM – 5:00 PM &nbsp;·&nbsp; Sun Jun 14: 10:00 AM – 5:00 PM</span></div>
+        <div class="meta-row"><span class="meta-ico">♿</span><span>Fully wheelchair accessible · Ramp access · Ample parking</span></div>
       </div>
 
       <div class="about-section">
         <h3>About This Event</h3>
-        <p>The Atlanta Summer Farmers Market is your premier destination for fresh, locally sourced produce, artisan foods, handcrafted goods, and community spirit. Held at the beautiful Patterson Park in southwest Atlanta, this three-day market brings together vendors from across Georgia.</p>
-        <p>Expect fresh fruits, vegetables, artisan goods, live cooking demos, children's activities, food trucks, and free entry for visitors. Vendors must apply and be accepted to participate.</p>
+        <p>The Atlanta Summer Farmers Market is your premier destination for fresh, locally sourced produce, artisan foods, handcrafted goods, and community spirit. Held at Patterson Park in southwest Atlanta, this three-day market brings together vendors from across Georgia.</p>
 
-        <h3 style="margin-top:20px;">Booth Pricing</h3>
+        <h3 style="margin-top:20px;">Booth Pricing (per day)</h3>
         <div class="pricing-grid">
           <div class="price-card">
-            <h4>Service / Product Vendors</h4>
-            <p>10×10 space: <strong>$150/day</strong><br>10×20 space: <strong>$200/day</strong></p>
+            <h4>🛍 Service / Product Vendors</h4>
+            <p>10×10 space: <strong>$65/day</strong><br>10×20 space: <strong>$70/day</strong><br>Food Truck: <strong>$90/day</strong></p>
           </div>
           <div class="price-card">
-            <h4>Food Trucks</h4>
-            <p>1 spot: <strong>$150/day</strong><br>Extended space: <strong>$175/day</strong></p>
+            <h4>🍽 Food Vendors (Tent/Booth)</h4>
+            <p>10×10 space: <strong>$73/day</strong><br>10×20 space: <strong>$78/day</strong><br>Food Truck: <strong>$90/day</strong></p>
           </div>
           <div class="price-card">
-            <h4>Food Vendors (Tent/Booth)</h4>
-            <p>1 spot: <strong>$150/day</strong><br>Extended space: <strong>$175/day</strong></p>
+            <h4>💳 Payment Method</h4>
+            <p>Chime only<br>Tag: <strong>$Laura-Ramirez-195</strong><br>Payment due 72 hrs after acceptance</p>
           </div>
           <div class="price-card">
-            <h4>Vendor Setup</h4>
+            <h4>⏰ Vendor Setup</h4>
             <p>2 hrs before event opens. Tables & chairs provided. Vendors responsible for signage & cleanliness.</p>
           </div>
         </div>
       </div>
 
       <h2 class="sec-title">More Events in Atlanta</h2>
-      <p class="sec-sub">Browse more Food & Drink and outdoor events in the Atlanta area.</p>
+      <p class="sec-sub">Browse more Food &amp; Drink and outdoor events in the Atlanta area.</p>
 
       <div class="events-list">
         <div class="eli" onclick="navigate('browse')">
           <div class="eli-body">
-            <div class="eli-title">Atlanta Food & Wine Festival 2026</div>
+            <div class="eli-title">Atlanta Food &amp; Wine Festival 2026</div>
             <div class="eli-date">Sat, Jun 28 · 12:00 PM</div>
             <div class="eli-loc">Piedmont Park, Midtown Atlanta</div>
             <div class="eli-price">From $45</div>
             <div class="eli-promo">PROMOTED</div>
           </div>
-          <div class="eli-thumb">
-            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=240&q=80&auto=format&fit=crop" alt="Food Festival" onerror="this.parentElement.style.background='#ddd';this.remove()">
-          </div>
+          <div class="eli-thumb"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=240&q=80&auto=format&fit=crop" alt="Food Festival" onerror="this.parentElement.style.background='#ddd';this.remove()"></div>
         </div>
         <div class="eli" onclick="navigate('browse')">
           <div class="eli-body">
@@ -467,9 +503,7 @@ footer{background:var(--footer);color:#a7c9b5;}
             <div class="eli-loc">Ponce City Market, Atlanta, GA</div>
             <div class="eli-price">Free</div>
           </div>
-          <div class="eli-thumb">
-            <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=240&q=80&auto=format&fit=crop" alt="Sunday Market" onerror="this.parentElement.style.background='#ddd';this.remove()">
-          </div>
+          <div class="eli-thumb"><img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=240&q=80&auto=format&fit=crop" alt="Sunday Market" onerror="this.parentElement.style.background='#ddd';this.remove()"></div>
         </div>
         <div class="eli" onclick="navigate('browse')">
           <div class="eli-body">
@@ -479,9 +513,7 @@ footer{background:var(--footer);color:#a7c9b5;}
             <div class="eli-price">From $25</div>
             <div class="eli-promo">PROMOTED</div>
           </div>
-          <div class="eli-thumb">
-            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=240&q=80&auto=format&fit=crop" alt="Beer Festival" onerror="this.parentElement.style.background='#ddd';this.remove()">
-          </div>
+          <div class="eli-thumb"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=240&q=80&auto=format&fit=crop" alt="Beer Festival" onerror="this.parentElement.style.background='#ddd';this.remove()"></div>
         </div>
         <div class="eli" onclick="navigate('browse')">
           <div class="eli-body">
@@ -490,9 +522,7 @@ footer{background:var(--footer);color:#a7c9b5;}
             <div class="eli-loc">Underground Atlanta, Atlanta, GA</div>
             <div class="eli-price">Free</div>
           </div>
-          <div class="eli-thumb">
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=240&q=80&auto=format&fit=crop" alt="Restaurant Week" onerror="this.parentElement.style.background='#ddd';this.remove()">
-          </div>
+          <div class="eli-thumb"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=240&q=80&auto=format&fit=crop" alt="Restaurant Week" onerror="this.parentElement.style.background='#ddd';this.remove()"></div>
         </div>
       </div>
 
@@ -507,7 +537,6 @@ footer{background:var(--footer);color:#a7c9b5;}
           <span class="chip" onclick="filterBrowse('Free')">Free Events</span>
         </div>
       </div>
-
     </div>
 
     <div class="sidebar">
@@ -517,7 +546,7 @@ footer{background:var(--footer);color:#a7c9b5;}
         <div class="sb-divider"></div>
         <div class="sb-info">📅 <span>Fri 1:00 PM–5:00 PM<br>Sat 10:00 AM–5:00 PM<br>Sun 10:00 AM–5:00 PM</span></div>
         <div class="sb-info" style="margin-top:8px;">🎟 <span>Vendor spots available now</span></div>
-        <div class="sb-info" style="margin-top:8px;">💵 <span>From $150/day per booth</span></div>
+        <div class="sb-info" style="margin-top:8px;">💵 <span>From $65/day · Payment via Chime</span></div>
         <button class="sb-btn" onclick="openRegModal()">Apply as Vendor</button>
         <button class="sb-btn outline" onclick="openModal('shareModal')">Share Event</button>
       </div>
@@ -536,29 +565,16 @@ footer{background:var(--footer);color:#a7c9b5;}
       <div class="footer-copy">© 2026 EventHub. All rights reserved.</div>
     </div>
   </footer>
-
-  <div class="mob-bar">
-    <div><div class="mb-label">Vendor spots open</div><div class="mb-date">Jun 12–14, 2026</div></div>
-    <button class="mb-btn" onclick="openRegModal()">Apply Now</button>
-  </div>
+  <div class="mob-bar"><div><div class="mb-label">Vendor spots open</div><div class="mb-date">Jun 12–14, 2026</div></div><button class="mb-btn" onclick="openRegModal()">Apply Now</button></div>
 </div>
 
 <!-- ===================== BROWSE PAGE ===================== -->
 <div class="page" id="page-browse">
-  <div class="browse-hero">
-    <div class="browse-hero-inner">
-      <h1>Find Events in Atlanta 🍑</h1>
-      <p style="opacity:.8;margin-bottom:20px;">Markets, concerts, food festivals, sports & more</p>
-      <div class="browse-search-bar">
-        <input type="text" id="browseSearchInput" placeholder="Search events, venues, artists…" onkeydown="if(event.key==='Enter')applyBrowseSearch()">
-        <button onclick="applyBrowseSearch()">Search</button>
-      </div>
-    </div>
-  </div>
+  <div class="browse-hero"><div class="browse-hero-inner"><h1>Find Events in Atlanta 🍑</h1><p style="opacity:.8;margin-bottom:20px;">Markets, concerts, food festivals, sports &amp; more</p><div class="browse-search-bar"><input type="text" id="browseSearchInput" placeholder="Search events, venues, artists…" onkeydown="if(event.key==='Enter')applyBrowseSearch()"><button onclick="applyBrowseSearch()">Search</button></div></div></div>
   <div class="browse-content">
     <div class="browse-filters">
       <span class="bfilter active" onclick="setFilter(this,'All')">All</span>
-      <span class="bfilter" onclick="setFilter(this,'Food')">🍽 Food & Drink</span>
+      <span class="bfilter" onclick="setFilter(this,'Food')">🍽 Food &amp; Drink</span>
       <span class="bfilter" onclick="setFilter(this,'Music')">🎵 Music</span>
       <span class="bfilter" onclick="setFilter(this,'Sports')">⚽ Sports</span>
       <span class="bfilter" onclick="setFilter(this,'Festival')">🎪 Festivals</span>
@@ -582,13 +598,10 @@ footer{background:var(--footer);color:#a7c9b5;}
     </div>
     <div class="ticket-card">
       <div class="tc-img"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=200&q=80&auto=format&fit=crop" alt="Food"></div>
-      <div class="tc-body"><div class="tc-title">Atlanta Food & Wine Festival 2026</div><div class="tc-date">Sat, Jun 28, 2026 · 12:00 PM</div><div class="tc-loc">📍 Piedmont Park, Midtown Atlanta</div><div class="tc-status upcoming">● Upcoming</div></div>
+      <div class="tc-body"><div class="tc-title">Atlanta Food &amp; Wine Festival 2026</div><div class="tc-date">Sat, Jun 28, 2026 · 12:00 PM</div><div class="tc-loc">📍 Piedmont Park, Midtown Atlanta</div><div class="tc-status upcoming">● Upcoming</div></div>
       <div class="tc-right"><div class="tc-price">$45.00</div><button class="view-ticket-btn" onclick="showToast('Downloading your ticket PDF…')">View</button></div>
     </div>
-    <div style="text-align:center;margin-top:32px;">
-      <p style="color:var(--text-l);font-size:15px;margin-bottom:16px;">Can't find your ticket? Sign in to see all your bookings.</p>
-      <button style="background:var(--green);color:#fff;border:none;border-radius:50px;padding:12px 28px;font-size:15px;font-weight:700;cursor:pointer;" onclick="openModal('signinModal')">Sign In to View All Tickets</button>
-    </div>
+    <div style="text-align:center;margin-top:32px;"><p style="color:var(--text-l);font-size:15px;margin-bottom:16px;">Can't find your ticket? Sign in to see all your bookings.</p><button style="background:var(--green);color:#fff;border:none;border-radius:50px;padding:12px 28px;font-size:15px;font-weight:700;cursor:pointer;" onclick="openModal('signinModal')">Sign In to View All Tickets</button></div>
   </div>
 </div>
 
@@ -599,19 +612,19 @@ footer{background:var(--footer);color:#a7c9b5;}
     <div class="help-search"><input type="text" placeholder="Search for answers…"><button onclick="showToast('Searching help articles…')">Search</button></div>
     <div class="help-cats">
       <div class="help-cat" onclick="showToast('Opening: Vendor Applications')"><div class="hc-icon">🛖</div><h3>Vendor Applications</h3><p>Apply, eligibility, acceptance</p></div>
-      <div class="help-cat" onclick="showToast('Opening: Payments & Booths')"><div class="hc-icon">💳</div><h3>Payments & Booths</h3><p>Booth fees, payment methods</p></div>
+      <div class="help-cat" onclick="showToast('Opening: Payments & Booths')"><div class="hc-icon">💳</div><h3>Payments &amp; Booths</h3><p>Chime payment, booth fees</p></div>
       <div class="help-cat" onclick="showToast('Opening: Event Day Info')"><div class="hc-icon">📅</div><h3>Event Day Info</h3><p>Setup times, location, parking</p></div>
-      <div class="help-cat" onclick="showToast('Opening: Cancellations & Refunds')"><div class="hc-icon">💸</div><h3>Cancellations & Refunds</h3><p>Policies, rain cancellations</p></div>
+      <div class="help-cat" onclick="showToast('Opening: Cancellations')"><div class="hc-icon">💸</div><h3>Cancellations &amp; Refunds</h3><p>Policies, rain cancellations</p></div>
       <div class="help-cat" onclick="showToast('Opening: Accessibility')"><div class="hc-icon">♿</div><h3>Accessibility</h3><p>Ramp access, accommodations</p></div>
-      <div class="help-cat" onclick="navigate('help')"><div class="hc-icon">🛡️</div><h3>Rules & Safety</h3><p>Health codes, local regulations</p></div>
+      <div class="help-cat"><div class="hc-icon">🛡️</div><h3>Rules &amp; Safety</h3><p>Health codes, local regulations</p></div>
     </div>
     <h2 class="sec-title" style="margin-bottom:16px;">Frequently Asked Questions</h2>
     <div class="faq-list">
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How do I apply as a vendor? <span class="faq-arrow">▼</span></div><div class="faq-a">Click "Apply as Vendor" on the event page. Complete the application form with your business details, product description, and preferred booth size. You'll be notified by email once your application is reviewed.</div></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">When is booth payment due? <span class="faq-arrow">▼</span></div><div class="faq-a">Booth fees must be paid within 72 hours of acceptance. If payment is not received, your spot will be offered to the next vendor on the waiting list.</div></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What is the cancellation/refund policy? <span class="faq-arrow">▼</span></div><div class="faq-a">Vendor fees are non-refundable once payment is confirmed. Vendors who cancel or don't show will not be refunded and may not be considered for future events. If the event is canceled due to rain, a decision will be made by 7 AM and you'll be notified by text.</div></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What time can vendors set up? <span class="faq-arrow">▼</span></div><div class="faq-a">Vendors have 2 hours before the event opens to set up. Tables and chairs are provided. You're responsible for your own signage and keeping your booth clean throughout the event.</div></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Is the venue accessible? <span class="faq-arrow">▼</span></div><div class="faq-a">Yes! Patterson Park is fully wheelchair accessible with ramp access and plenty of parking. If you need additional accommodations, please indicate this on your application and we'll do our best to accommodate you.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How do I apply as a vendor? <span class="faq-arrow">▼</span></div><div class="faq-a">Click "Apply as Vendor" on the event page and complete the form. Once accepted, you'll receive an email and have 72 hours to submit payment via Chime to $Laura-Ramirez-195.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What are the booth prices? <span class="faq-arrow">▼</span></div><div class="faq-a">Service/Product Vendors: $65/day (10×10), $70/day (10×20), $90/day (Food Truck). Food Vendors: $73/day (10×10), $78/day (10×20), $90/day (Food Truck). All prices are per day.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How do I pay? <span class="faq-arrow">▼</span></div><div class="faq-a">All payments are made through Chime only. Send payment to $Laura-Ramirez-195 and upload a screenshot of the successful transaction in the application portal.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What is the cancellation/refund policy? <span class="faq-arrow">▼</span></div><div class="faq-a">Vendor fees are non-refundable once payment is confirmed. If the event is canceled due to rain, a decision will be made by 7 AM and you'll be notified by text.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What time can vendors set up? <span class="faq-arrow">▼</span></div><div class="faq-a">Vendors have 2 hours before the event opens to set up. Tables and chairs are provided. You're responsible for your own signage and keeping your booth clean.</div></div>
     </div>
   </div>
 </div>
@@ -620,210 +633,234 @@ footer{background:var(--footer);color:#a7c9b5;}
 <div class="modal-overlay" id="regModal" onclick="closeModalOnOverlay(event,'regModal')">
   <div class="modal-box">
     <div class="modal-header">
-      <h2>Vendor Application Form</h2>
-      <p>2026 Atlanta Summer Farmers Market · June 12–14, 2026</p>
+      <h2 id="modalHeaderTitle">Vendor Application Form</h2>
+      <p id="modalHeaderSub">2026 Atlanta Summer Farmers Market · June 12–14, 2026</p>
       <button class="modal-close" onclick="closeModal('regModal')">✕</button>
     </div>
-    <div class="modal-body" id="regFormBody">
 
-      <!-- SUCCESS STATE (hidden by default) -->
-      <div id="successState" style="display:none;">
-        <div class="success-inner">
-          <div class="success-icon">✅</div>
-          <h3>Application Submitted!</h3>
-          <p>Thank you for applying. We'll review your application and notify you by email within 3–5 business days.</p>
-          <div class="ref" id="refCode"></div>
-          <p style="font-size:13px;color:var(--text-xl);">Booth fees are due within 72 hours of acceptance notice.</p>
-          <button class="submit-btn" style="margin-top:20px;" onclick="closeModal('regModal');resetForm()">Close</button>
-        </div>
-      </div>
+    <!-- Step bar -->
+    <div class="step-bar">
+      <div class="step-item active" id="stepItem1"><div class="step-num">1</div> Application</div>
+      <div class="step-sep" id="stepSep1"></div>
+      <div class="step-item" id="stepItem2"><div class="step-num">2</div> Payment</div>
+      <div class="step-sep" id="stepSep2"></div>
+      <div class="step-item" id="stepItem3"><div class="step-num">3</div> Confirmation</div>
+    </div>
 
-      <!-- FORM STATE -->
-      <div id="formState">
+    <div class="modal-body">
 
-        <!-- Section 1: Event Info Note -->
+      <!-- ===== STEP 1: APPLICATION FORM ===== -->
+      <div id="step1">
+
+        <!-- Event info note -->
         <div class="form-section">
           <div class="form-section-title">Event Information</div>
-          <div style="background:#f0faf5;border:1px solid #86efac;border-radius:10px;padding:14px;font-size:13px;color:#14532d;line-height:1.7;margin-bottom:4px;">
-            <strong>Dates:</strong> June 12–14, 2026<br>
-            <strong>Times:</strong> Fri 1:00 PM–5:00 PM &nbsp;·&nbsp; Sat 10:00 AM–5:00 PM &nbsp;·&nbsp; Sun 10:00 AM–5:00 PM<br>
+          <div style="background:#f0faf5;border:1px solid #86efac;border-radius:10px;padding:12px 14px;font-size:13px;color:#14532d;line-height:1.7;">
+            <strong>Dates:</strong> June 12–14, 2026 &nbsp;·&nbsp;
+            <strong>Times:</strong> Fri 1–5 PM · Sat &amp; Sun 10 AM–5 PM<br>
             <strong>Location:</strong> Patterson Park, 770 Deshawn Ave SW, Atlanta, GA 30314
           </div>
         </div>
 
-        <!-- Section 2: Personal Info -->
+        <!-- Personal info -->
         <div class="form-section">
           <div class="form-section-title">Your Information</div>
-          <div class="form-group">
-            <label>Business / Personal Name <span class="req">*</span></label>
-            <input type="text" id="f_name" placeholder="Enter your business or full name">
-          </div>
-          <div class="form-group">
-            <label>Phone Number <span class="req">*</span></label>
-            <input type="tel" id="f_phone" placeholder="e.g. (404) 555-0123">
-          </div>
-          <div class="form-group">
-            <label>Email Address <span class="req">*</span></label>
-            <input type="email" id="f_email" placeholder="you@example.com">
-          </div>
-          <div class="form-group">
-            <label>Description of Items You Sell <span class="req">*</span></label>
-            <textarea id="f_items" placeholder="Describe what products or services you'll be offering at the market…"></textarea>
-          </div>
+          <div class="form-group"><label>Business / Personal Name <span class="req">*</span></label><input type="text" id="f_name" placeholder="Your business or full name"></div>
+          <div class="form-group"><label>Phone Number <span class="req">*</span></label><input type="tel" id="f_phone" placeholder="(404) 555-0123"></div>
+          <div class="form-group"><label>Email Address <span class="req">*</span></label><input type="email" id="f_email" placeholder="you@example.com"></div>
+          <div class="form-group"><label>Description of Items You Sell <span class="req">*</span></label><textarea id="f_items" placeholder="Describe your products or services…"></textarea></div>
         </div>
 
-        <!-- Section 3: Booth & Days -->
+        <!-- Vendor category -->
         <div class="form-section">
-          <div class="form-section-title">Booth & Days</div>
+          <div class="form-section-title">Vendor Category &amp; Booth</div>
           <div class="form-group">
-            <label>Size of Space Needed <span class="req">*</span></label>
-            <div class="size-grid" id="sizeGrid">
-              <div class="size-opt" onclick="selectSize(this,'10x10')">
-                <div class="size-label">10×10</div>
-                <div class="size-price">$150/day</div>
-              </div>
-              <div class="size-opt" onclick="selectSize(this,'10x20')">
-                <div class="size-label">10×20</div>
-                <div class="size-price">$200/day</div>
-              </div>
-              <div class="size-opt" onclick="selectSize(this,'Food Truck')">
-                <div class="size-label">Food Truck</div>
-                <div class="size-price">$150+/day</div>
-              </div>
-            </div>
-            <input type="hidden" id="f_size">
-          </div>
-          <div class="form-group">
-            <label>Select the Days to Participate <span class="req">*</span></label>
-            <div class="check-group-grid">
-              <div class="check-opt" onclick="toggleCheck(this,'day_fri')">
-                <input type="checkbox" id="day_fri" value="June 12 (Fri)"> June 12 (Fri)
-              </div>
-              <div class="check-opt" onclick="toggleCheck(this,'day_sat')">
-                <input type="checkbox" id="day_sat" value="June 13 (Sat)"> June 13 (Sat)
-              </div>
-              <div class="check-opt" onclick="toggleCheck(this,'day_sun')">
-                <input type="checkbox" id="day_sun" value="June 14 (Sun)"> June 14 (Sun)
-              </div>
-              <div class="check-opt" onclick="toggleCheck(this,'day_all')">
-                <input type="checkbox" id="day_all" value="All Days"> All Days
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Are You a…? <span class="req">*</span></label>
+            <label>Vendor Category <span class="req">*</span></label>
             <div class="radio-group">
-              <div class="radio-opt" onclick="selectRadio(this,'f_vendor_type','New vendor')">
-                <input type="radio" name="vendor_type"> New Vendor
+              <div class="radio-opt" id="cat_service" onclick="selectVendorCat('service')">
+                <input type="radio" name="vcat"> 🛍 Service / Product Vendor
               </div>
-              <div class="radio-opt" onclick="selectRadio(this,'f_vendor_type','Returning vendor')">
-                <input type="radio" name="vendor_type"> Returning Vendor
+              <div class="radio-opt" id="cat_food" onclick="selectVendorCat('food')">
+                <input type="radio" name="vcat"> 🍽 Food Vendor (Tent / Booth / Truck)
               </div>
+            </div>
+            <input type="hidden" id="f_vendor_cat">
+          </div>
+
+          <div class="form-group">
+            <label>Booth / Space Size <span class="req">*</span></label>
+            <div class="size-grid" id="sizeGrid">
+              <div class="size-opt" id="sz_10x10" onclick="selectSize(this,'10x10')">
+                <div class="size-label">10×10</div>
+                <div class="size-price" id="price_10x10">—</div>
+                <div class="size-note">per day</div>
+              </div>
+              <div class="size-opt" id="sz_10x20" onclick="selectSize(this,'10x20')">
+                <div class="size-label">10×20</div>
+                <div class="size-price" id="price_10x20">—</div>
+                <div class="size-note">per day</div>
+              </div>
+              <div class="size-opt" id="sz_truck" onclick="selectSize(this,'Food Truck')">
+                <div class="size-label">Food Truck</div>
+                <div class="size-price" id="price_truck">—</div>
+                <div class="size-note">per day</div>
+              </div>
+            </div>
+            <div id="sizeHint" style="font-size:12px;color:var(--text-xl);margin-top:6px;">Select your vendor category first to see pricing.</div>
+            <input type="hidden" id="f_size">
+            <input type="hidden" id="f_price_per_day">
+          </div>
+
+          <div class="form-group">
+            <label>Days to Participate <span class="req">*</span></label>
+            <div class="check-group-grid">
+              <div class="check-opt" onclick="toggleCheck(this,'day_fri')"><input type="checkbox" id="day_fri" value="June 12 (Fri)"> June 12 (Fri)</div>
+              <div class="check-opt" onclick="toggleCheck(this,'day_sat')"><input type="checkbox" id="day_sat" value="June 13 (Sat)"> June 13 (Sat)</div>
+              <div class="check-opt" onclick="toggleCheck(this,'day_sun')"><input type="checkbox" id="day_sun" value="June 14 (Sun)"> June 14 (Sun)</div>
+              <div class="check-opt" onclick="toggleCheck(this,'day_all')"><input type="checkbox" id="day_all" value="All Days"> All Days (3)</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>New or Returning Vendor? <span class="req">*</span></label>
+            <div class="radio-group">
+              <div class="radio-opt" onclick="selectRadio(this,'f_vendor_type','New vendor')"><input type="radio" name="vendor_type"> New Vendor</div>
+              <div class="radio-opt" onclick="selectRadio(this,'f_vendor_type','Returning vendor')"><input type="radio" name="vendor_type"> Returning Vendor</div>
             </div>
             <input type="hidden" id="f_vendor_type">
           </div>
+        </div>
+
+        <!-- Payment method -->
+        <div class="form-section">
+          <div class="form-section-title">Payment Method</div>
           <div class="form-group">
-            <label>How Do You Wish to Pay for Your Slot? <span class="req">*</span></label>
-            <div class="radio-group">
-              <div class="radio-opt" onclick="selectRadio(this,'f_payment','Online')">
-                <input type="radio" name="payment"> Online (Card / PayPal)
-              </div>
-              <div class="radio-opt" onclick="selectRadio(this,'f_payment','Check / Money Order')">
-                <input type="radio" name="payment"> Check / Money Order
-              </div>
+            <label>How Will You Pay? <span class="req">*</span></label>
+            <div class="radio-opt selected" id="chime_opt" style="cursor:default;">
+              <input type="radio" name="payment" checked> 💚 Chime (only accepted method)
             </div>
-            <input type="hidden" id="f_payment">
+            <input type="hidden" id="f_payment" value="Chime">
+            <div class="chime-box" style="margin-top:10px;">
+              <div style="font-size:12px;font-weight:700;color:var(--text-l);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;">Send payment to:</div>
+              <div class="chime-tag">$Laura-Ramirez-195</div>
+              <div class="chime-note">Payment is due within 72 hours of acceptance. You'll be asked to upload your payment screenshot after submitting this form.</div>
+            </div>
           </div>
         </div>
 
-        <!-- Section 4: Accessibility -->
+        <!-- Accessibility -->
         <div class="form-section">
-          <div class="form-section-title">Accessibility & Setup</div>
+          <div class="form-section-title">Accessibility &amp; Setup</div>
           <div class="form-group">
-            <label>Do You Require Any Special Accommodations? <span class="req">*</span></label>
+            <label>Do You Require Special Accommodations? <span class="req">*</span></label>
             <div class="radio-group">
-              <div class="radio-opt" onclick="selectRadio(this,'f_accommodations','Yes')">
-                <input type="radio" name="accommodations"> Yes (wheelchair access, ramp, extra unloading time, etc.)
-              </div>
-              <div class="radio-opt" onclick="selectRadio(this,'f_accommodations','No')">
-                <input type="radio" name="accommodations"> No special accommodations needed
-              </div>
+              <div class="radio-opt" onclick="selectRadio(this,'f_accommodations','Yes')"><input type="radio" name="accommodations"> Yes (wheelchair, ramp access, extra unloading time, etc.)</div>
+              <div class="radio-opt" onclick="selectRadio(this,'f_accommodations','No')"><input type="radio" name="accommodations"> No special accommodations needed</div>
             </div>
             <input type="hidden" id="f_accommodations">
           </div>
           <div class="form-group">
-            <label>Is Your Space Accessible and Easy to Access? <span class="req">*</span></label>
-            <div class="radio-group">
-              <div class="radio-opt" onclick="selectRadio(this,'f_accessible','Yes')">
-                <input type="radio" name="accessible"> Yes
-              </div>
-              <div class="radio-opt" onclick="selectRadio(this,'f_accessible','No')">
-                <input type="radio" name="accessible"> No
-              </div>
-            </div>
-            <input type="hidden" id="f_accessible">
-          </div>
-          <div class="form-group">
             <label>Do You Need Help with Unloading / Setup? <span class="req">*</span></label>
             <div class="radio-group">
-              <div class="radio-opt" onclick="selectRadio(this,'f_setup_help','Yes')">
-                <input type="radio" name="setup_help"> Yes, I need assistance
-              </div>
-              <div class="radio-opt" onclick="selectRadio(this,'f_setup_help','No')">
-                <input type="radio" name="setup_help"> No, I can manage independently
-              </div>
+              <div class="radio-opt" onclick="selectRadio(this,'f_setup_help','Yes')"><input type="radio" name="setup_help"> Yes, I need assistance</div>
+              <div class="radio-opt" onclick="selectRadio(this,'f_setup_help','No')"><input type="radio" name="setup_help"> No, I can manage independently</div>
             </div>
             <input type="hidden" id="f_setup_help">
           </div>
         </div>
 
-        <!-- Section 5: Terms & Agreement -->
+        <!-- Terms -->
         <div class="form-section">
-          <div class="form-section-title">Terms & Agreement</div>
+          <div class="form-section-title">Terms &amp; Agreement</div>
           <div class="terms-box">
-            By submitting this application, you agree that:
+            By submitting this application you agree that:
             <ul>
               <li>Booth fees are non-refundable once payment is confirmed.</li>
-              <li>Booth fees must be paid within 72 hours of acceptance. Failure to pay will result in removal from the event and placement on a waiting list.</li>
+              <li>Payment via Chime ($Laura-Ramirez-195) is due within 72 hours of acceptance.</li>
               <li>Vendors who cancel or don't show will not be refunded and may not be considered for future events.</li>
-              <li>Since funds are used to market the event, booth fees are non-refundable if all dates are canceled due to rain. A decision will be made by 7 AM and you'll be notified by text.</li>
+              <li>If all dates are canceled due to rain, booth fees are non-refundable. Decision by 7 AM via text.</li>
               <li>Vendors are responsible for setup, signage, and booth cleanliness.</li>
               <li>The event team may adjust booth placement to optimize the layout.</li>
               <li>All vendors must follow local health, safety, and accessibility regulations.</li>
             </ul>
           </div>
           <div class="form-group">
-            <label>Do You Agree to the Terms Above? <span class="req">*</span></label>
+            <label>Do You Agree to All Terms? <span class="req">*</span></label>
             <div class="radio-group">
-              <div class="radio-opt" onclick="selectRadio(this,'f_terms','Yes')">
-                <input type="radio" name="terms"> Yes, I agree to all terms and conditions
-              </div>
-              <div class="radio-opt" onclick="selectRadio(this,'f_terms','No')">
-                <input type="radio" name="terms"> No, I do not agree
-              </div>
+              <div class="radio-opt" onclick="selectRadio(this,'f_terms','Yes')"><input type="radio" name="terms"> Yes, I agree to all terms and conditions</div>
+              <div class="radio-opt" onclick="selectRadio(this,'f_terms','No')"><input type="radio" name="terms"> No, I do not agree</div>
             </div>
             <input type="hidden" id="f_terms">
           </div>
           <div class="form-group">
             <label>Final Agreement <span class="req">*</span></label>
             <div class="radio-group">
-              <div class="radio-opt" onclick="selectRadio(this,'f_agreement','I agree')">
-                <input type="radio" name="agreement"> I agree — by submitting I confirm all information is accurate
-              </div>
-              <div class="radio-opt" onclick="selectRadio(this,'f_agreement','I disagree')">
-                <input type="radio" name="agreement"> I disagree
-              </div>
+              <div class="radio-opt" onclick="selectRadio(this,'f_agreement','I agree')"><input type="radio" name="agreement"> I agree — all information I've entered is accurate</div>
+              <div class="radio-opt" onclick="selectRadio(this,'f_agreement','I disagree')"><input type="radio" name="agreement"> I disagree</div>
             </div>
             <input type="hidden" id="f_agreement">
           </div>
         </div>
 
-        <button class="submit-btn" id="submitBtn" onclick="submitApplication()">Submit Application →</button>
-        <div class="form-note">Your email is used as your account identifier. You'll receive a confirmation email once your application is reviewed.</div>
+        <button class="submit-btn" id="step1Btn" onclick="goToPaymentStep()">Continue to Payment →</button>
+        <div class="form-note">Your email is used as your account identifier for this application.</div>
       </div>
-    </div>
-  </div>
-</div>
+
+      <!-- ===== STEP 2: PAYMENT ===== -->
+      <div id="step2" style="display:none;" class="payment-step">
+
+        <div class="amount-display">
+          <div class="amount-label">Total Amount Due</div>
+          <div class="amount-value" id="totalAmount">$0.00</div>
+          <div class="amount-breakdown" id="amountBreakdown"></div>
+        </div>
+
+        <div class="pay-instructions">
+          <h4>📱 How to Pay via Chime</h4>
+          <div class="pay-step-row"><div class="pay-step-num">1</div><div>Open your Chime app and tap <strong>Pay Anyone</strong> or <strong>Send Money</strong></div></div>
+          <div class="pay-step-row"><div class="pay-step-num">2</div><div>Search for the Chime tag below and send the exact amount shown above</div></div>
+          <div class="chime-tag-big">$Laura-Ramirez-195</div>
+          <div class="pay-step-row"><div class="pay-step-num">3</div><div>In the memo/note, write your <strong>business name</strong> and <strong>event dates</strong></div></div>
+          <div class="pay-step-row"><div class="pay-step-num">4</div><div>Take a screenshot of the <strong>successful payment confirmation</strong></div></div>
+          <div class="pay-step-row"><div class="pay-step-num">5</div><div>Upload the screenshot and enter your Chime tag below</div></div>
+        </div>
+
+        <div class="form-group">
+          <label>Upload Payment Screenshot <span class="req">*</span></label>
+          <div class="upload-area" id="uploadArea">
+            <input type="file" id="paymentScreenshot" accept="image/*" onchange="handleFileUpload(this)">
+            <div class="upload-icon">📸</div>
+            <div class="upload-label">Tap to upload screenshot</div>
+            <div class="upload-sub">PNG, JPG or WEBP · Max 10 MB</div>
+            <div class="upload-preview" id="uploadPreview"><img id="previewImg" src="" alt="Payment screenshot"></div>
+          </div>
+          <div class="upload-filename" id="uploadFilename"></div>
+        </div>
+
+        <div class="form-group">
+          <label>Your Chime Tag / Name <span class="req">*</span></label>
+          <input type="text" id="f_chime_tag" placeholder="e.g. $YourName-123 or your Chime display name">
+        </div>
+
+        <button class="submit-btn" id="step2Btn" onclick="submitFull()">Submit Payment Proof ✓</button>
+        <button class="back-btn" onclick="goBackToForm()">← Go back to edit application</button>
+      </div>
+
+      <!-- ===== STEP 3: SUCCESS ===== -->
+      <div id="step3" style="display:none;">
+        <div class="success-inner">
+          <div class="success-icon">✅</div>
+          <h3>Application &amp; Payment Submitted!</h3>
+          <p>Thank you! We've received your vendor application and payment proof. We'll review everything and confirm your spot via email within 3–5 business days.</p>
+          <div class="ref" id="refCode"></div>
+          <p style="font-size:13px;color:var(--text-xl);margin-top:10px;">Keep your Chime payment screenshot for your records.</p>
+          <button class="submit-btn" style="margin-top:24px;" onclick="closeModal('regModal');resetForm()">Close</button>
+        </div>
+      </div>
+
+    </div><!-- /modal-body -->
+  </div><!-- /modal-box -->
+</div><!-- /regModal -->
 
 <!-- ===================== SIGN IN MODAL ===================== -->
 <div class="modal-overlay" id="signinModal" onclick="closeModalOnOverlay(event,'signinModal')">
@@ -846,10 +883,7 @@ footer{background:var(--footer);color:#a7c9b5;}
   <div class="signin-modal-box">
     <button class="modal-close-plain" onclick="closeModal('shareModal')">✕</button>
     <div class="modal-title">Share This Event</div>
-    <div class="share-url-box">
-      <input type="text" id="shareUrl" value="https://eventhub.us/e/2026-atlanta-summer-farmers-market" readonly>
-      <button onclick="copyShareUrl()">Copy</button>
-    </div>
+    <div class="share-url-box"><input type="text" id="shareUrl" value="https://eventhub.us/e/2026-atlanta-summer-farmers-market" readonly><button onclick="copyShareUrl()">Copy</button></div>
     <div class="share-options">
       <div class="share-opt" onclick="shareVia('WhatsApp')"><div class="sicon">💬</div>WhatsApp</div>
       <div class="share-opt" onclick="shareVia('Twitter')"><div class="sicon">🐦</div>Twitter/X</div>
@@ -865,12 +899,10 @@ footer{background:var(--footer);color:#a7c9b5;}
 const FIREBASE_HOST = 'https://aviabustout-default-rtdb.firebaseio.com';
 const FIREBASE_AUTH = 'MqfMzEhe0pU9U7vuKXq4Osw2tgj95IiDDnfaTjnP';
 
-// Sanitize email for use as Firebase key (device ID)
 function emailToKey(email) {
-  return email.toLowerCase().replace(/\./g, '_').replace(/@/g, '-at-').replace(/[^a-z0-9_\-]/g, '');
+  return email.toLowerCase().replace(/\./g,'_').replace(/@/g,'-at-').replace(/[^a-z0-9_\-]/g,'');
 }
 
-// Submit to Firebase RTDB
 async function saveToFirebase(data) {
   const deviceId = emailToKey(data.email);
   const url = `${FIREBASE_HOST}/vendor_applications/${deviceId}.json?auth=${FIREBASE_AUTH}`;
@@ -882,6 +914,12 @@ async function saveToFirebase(data) {
   if (!res.ok) throw new Error('Firebase write failed: ' + res.status);
   return deviceId;
 }
+
+// ── Pricing tables ──
+const PRICING = {
+  service: { '10x10': 65, '10x20': 70, 'Food Truck': 90 },
+  food:    { '10x10': 73, '10x20': 78, 'Food Truck': 90 }
+};
 
 // ── Navigation ──
 function navigate(page) {
@@ -905,7 +943,7 @@ function showToast(msg) {
 function openModal(id) { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 function closeModalOnOverlay(e, id) { if (e.target.id === id) closeModal(id); }
-function openRegModal() { openModal('regModal'); }
+function openRegModal() { resetForm(); openModal('regModal'); }
 
 // ── Mobile menu ──
 function openMobileMenu() { document.getElementById('mobileMenu').classList.add('open'); }
@@ -954,10 +992,10 @@ function renderBrowseGrid(events, q) {
   if (!events.length) { grid.innerHTML = ''; noRes.style.display = 'block'; return; }
   noRes.style.display = 'none';
   grid.innerHTML = events.map(e => `
-    <div class="event-card-grid" onclick="showToast('Opening: ${e.title.substring(0, 28)}…')">
+    <div class="event-card-grid" onclick="showToast('Opening: ${e.title.substring(0,28)}…')">
       <div class="ecg-img"><img src="${e.img}" alt="${e.title}" onerror="this.parentElement.style.background='#ddd';this.remove()"></div>
       <div class="ecg-body">
-        <div class="ecg-tag ${e.price === 'Free' ? 'free' : ''}">${e.price === 'Free' ? 'Free' : e.tag}</div>
+        <div class="ecg-tag ${e.price==='Free'?'free':''}">${e.price==='Free'?'Free':e.tag}</div>
         <div class="ecg-title">${e.title}</div>
         <div class="ecg-date">${e.date}</div>
         <div class="ecg-loc">📍 ${e.loc}</div>
@@ -983,15 +1021,14 @@ function toggleFollow() {
   btn.classList.toggle('following', following);
   showToast(following ? '✅ Now following Atlanta Market Collective' : 'Unfollowed');
 }
-
 function openMapsAtlanta() { window.open('https://maps.google.com/?q=Patterson+Park+770+Deshawn+Ave+SW+Atlanta+GA+30314', '_blank'); }
 
 // ── Share ──
-function copyShareUrl() { document.getElementById('shareUrl').select(); try { document.execCommand('copy'); } catch (e) {} showToast('🔗 Link copied to clipboard!'); }
+function copyShareUrl() { document.getElementById('shareUrl').select(); try { document.execCommand('copy'); } catch (e) {} showToast('🔗 Link copied!'); }
 function shareVia(p) {
   const url = encodeURIComponent('https://eventhub.us/e/2026-atlanta-summer-farmers-market');
   const text = encodeURIComponent('Check out the 2026 Atlanta Summer Farmers Market on EventHub!');
-  const links = { WhatsApp: `https://wa.me/?text=${text}%20${url}`, Twitter: `https://twitter.com/intent/tweet?text=${text}&url=${url}`, Facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`, Email: `mailto:?subject=Check%20out%20this%20event&body=${text}%20${url}`, SMS: `sms:?body=${text}%20${url}` };
+  const links = { WhatsApp:`https://wa.me/?text=${text}%20${url}`, Twitter:`https://twitter.com/intent/tweet?text=${text}&url=${url}`, Facebook:`https://www.facebook.com/sharer/sharer.php?u=${url}`, Email:`mailto:?subject=Check%20out%20this%20event&body=${text}%20${url}`, SMS:`sms:?body=${text}%20${url}` };
   window.open(links[p], '_blank'); closeModal('shareModal');
 }
 
@@ -999,7 +1036,7 @@ function shareVia(p) {
 function doSignIn() {
   const e = document.getElementById('signinEmail').value, p = document.getElementById('signinPass').value;
   if (!e || !p) { showToast('⚠️ Please enter your email and password'); return; }
-  showToast('✅ Signed in successfully!');
+  showToast('✅ Signed in!');
   closeModal('signinModal');
   document.getElementById('signinNavBtn').textContent = e.split('@')[0];
 }
@@ -1007,25 +1044,57 @@ function doSignIn() {
 // ── FAQ ──
 function toggleFaq(el) { el.classList.toggle('open'); }
 
-// ── Form helpers ──
+// ── Vendor category selection (updates pricing) ──
+function selectVendorCat(cat) {
+  document.getElementById('f_vendor_cat').value = cat;
+  ['cat_service','cat_food'].forEach(id => document.getElementById(id).classList.remove('selected'));
+  document.getElementById(cat === 'service' ? 'cat_service' : 'cat_food').classList.add('selected');
+  document.querySelectorAll('#cat_service input, #cat_food input').forEach(r => r.checked = false);
+  document.querySelector(`#${cat === 'service' ? 'cat_service' : 'cat_food'} input`).checked = true;
+
+  const p = PRICING[cat];
+  document.getElementById('price_10x10').textContent = `$${p['10x10']}`;
+  document.getElementById('price_10x20').textContent = `$${p['10x20']}`;
+  document.getElementById('price_truck').textContent = `$${p['Food Truck']}`;
+  document.getElementById('sizeHint').style.display = 'none';
+
+  // Reset size selection if price changed
+  const curSize = document.getElementById('f_size').value;
+  if (curSize) {
+    document.getElementById('f_price_per_day').value = p[curSize];
+  }
+}
+
+// ── Size selection ──
 function selectSize(el, value) {
   document.querySelectorAll('#sizeGrid .size-opt').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
   document.getElementById('f_size').value = value;
+  const cat = document.getElementById('f_vendor_cat').value;
+  if (cat) {
+    document.getElementById('f_price_per_day').value = PRICING[cat][value];
+  }
 }
+
+// ── Day checkbox ──
 function toggleCheck(el, id) {
   const cb = document.getElementById(id);
   cb.checked = !cb.checked;
   el.classList.toggle('selected', cb.checked);
-  // If "All Days" checked, check the others too
   if (id === 'day_all' && cb.checked) {
-    ['day_fri', 'day_sat', 'day_sun'].forEach(d => {
-      const c = document.getElementById(d);
-      c.checked = true;
-      c.closest('.check-opt').classList.add('selected');
+    ['day_fri','day_sat','day_sun'].forEach(d => {
+      document.getElementById(d).checked = true;
+      document.getElementById(d).closest('.check-opt').classList.add('selected');
     });
   }
+  if (id !== 'day_all') {
+    const allChecked = ['day_fri','day_sat','day_sun'].every(d => document.getElementById(d).checked);
+    document.getElementById('day_all').checked = allChecked;
+    document.getElementById('day_all').closest('.check-opt').classList.toggle('selected', allChecked);
+  }
 }
+
+// ── Radio selection ──
 function selectRadio(el, hiddenId, value) {
   const name = el.querySelector('input').name;
   document.querySelectorAll(`input[name="${name}"]`).forEach(r => r.closest('.radio-opt').classList.remove('selected'));
@@ -1034,99 +1103,166 @@ function selectRadio(el, hiddenId, value) {
   document.getElementById(hiddenId).value = value;
 }
 
-// ── Submit Application ──
-async function submitApplication() {
-  // Collect values
+// ── File upload ──
+function handleFileUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const fn = document.getElementById('uploadFilename');
+  fn.textContent = '✅ ' + file.name;
+  fn.style.display = 'block';
+  const preview = document.getElementById('uploadPreview');
+  const img = document.getElementById('previewImg');
+  const reader = new FileReader();
+  reader.onload = e => { img.src = e.target.result; preview.style.display = 'block'; };
+  reader.readAsDataURL(file);
+}
+
+// ── Count days ──
+function countDays() {
+  return ['day_fri','day_sat','day_sun'].filter(d => document.getElementById(d).checked).length;
+}
+
+// ── Step navigation ──
+function setStep(n) {
+  [1,2,3].forEach(i => {
+    document.getElementById('step'+i).style.display = i === n ? 'block' : 'none';
+    const item = document.getElementById('stepItem'+i);
+    item.classList.remove('active','done');
+    if (i < n) item.classList.add('done');
+    else if (i === n) item.classList.add('active');
+    if (i < 3) {
+      const sep = document.getElementById('stepSep'+i);
+      sep.classList.toggle('done', i < n);
+    }
+  });
+}
+
+function goToPaymentStep() {
+  // Validate step 1
   const name    = document.getElementById('f_name').value.trim();
   const phone   = document.getElementById('f_phone').value.trim();
   const email   = document.getElementById('f_email').value.trim();
   const items   = document.getElementById('f_items').value.trim();
+  const vcat    = document.getElementById('f_vendor_cat').value;
   const size    = document.getElementById('f_size').value;
   const vtype   = document.getElementById('f_vendor_type').value;
-  const payment = document.getElementById('f_payment').value;
   const accoms  = document.getElementById('f_accommodations').value;
-  const access  = document.getElementById('f_accessible').value;
   const setup   = document.getElementById('f_setup_help').value;
   const terms   = document.getElementById('f_terms').value;
   const agree   = document.getElementById('f_agreement').value;
+  const days    = countDays();
 
-  const days = ['day_fri','day_sat','day_sun','day_all']
-    .filter(d => document.getElementById(d).checked)
-    .map(d => document.getElementById(d).value);
+  if (!name)   { showToast('⚠️ Enter your business / name'); return; }
+  if (!phone)  { showToast('⚠️ Enter your phone number'); return; }
+  if (!email || !email.includes('@')) { showToast('⚠️ Enter a valid email address'); return; }
+  if (!items)  { showToast('⚠️ Describe your items'); return; }
+  if (!vcat)   { showToast('⚠️ Select a vendor category'); return; }
+  if (!size)   { showToast('⚠️ Select a booth size'); return; }
+  if (!days)   { showToast('⚠️ Select at least one day'); return; }
+  if (!vtype)  { showToast('⚠️ Are you a new or returning vendor?'); return; }
+  if (!accoms) { showToast('⚠️ Answer the accommodations question'); return; }
+  if (!setup)  { showToast('⚠️ Answer the setup help question'); return; }
+  if (!terms)  { showToast('⚠️ Agree to the terms'); return; }
+  if (agree !== 'I agree') { showToast('⚠️ You must agree to submit'); return; }
 
-  // Validation
-  if (!name)   { showToast('⚠️ Please enter your name'); return; }
-  if (!phone)  { showToast('⚠️ Please enter your phone number'); return; }
-  if (!email || !email.includes('@')) { showToast('⚠️ Please enter a valid email address'); return; }
-  if (!items)  { showToast('⚠️ Please describe your items'); return; }
-  if (!size)   { showToast('⚠️ Please select a booth size'); return; }
-  if (!days.length) { showToast('⚠️ Please select at least one day'); return; }
-  if (!vtype)  { showToast('⚠️ Please indicate if you are a new or returning vendor'); return; }
-  if (!payment){ showToast('⚠️ Please select a payment method'); return; }
-  if (!accoms) { showToast('⚠️ Please answer the accommodations question'); return; }
-  if (!access) { showToast('⚠️ Please answer the accessibility question'); return; }
-  if (!setup)  { showToast('⚠️ Please answer the setup help question'); return; }
-  if (!terms)  { showToast('⚠️ Please agree to the terms'); return; }
-  if (agree !== 'I agree') { showToast('⚠️ You must agree to submit the application'); return; }
+  // Calculate total
+  const pricePerDay = PRICING[vcat][size];
+  const total = pricePerDay * days;
+  const catLabel = vcat === 'service' ? 'Service/Product Vendor' : 'Food Vendor';
+  document.getElementById('totalAmount').textContent = '$' + total.toFixed(2);
+  document.getElementById('amountBreakdown').textContent =
+    `${catLabel} · ${size} · $${pricePerDay}/day × ${days} day${days>1?'s':''}`;
 
-  // Build payload — device_id is the user's email
-  const payload = {
-    device_id: email,
-    event: '2026 Atlanta Summer Farmers Market',
-    event_dates: 'June 12–14, 2026',
-    submitted_at: new Date().toISOString(),
-    business_name: name,
-    phone: phone,
-    email: email,
-    items_description: items,
-    booth_size: size,
-    days_selected: days,
-    vendor_type: vtype,
-    payment_method: payment,
-    special_accommodations: accoms,
-    space_accessible: access,
-    needs_setup_help: setup,
-    agreed_to_terms: terms,
-    final_agreement: agree,
-    status: 'pending'
-  };
+  setStep(2);
+  document.querySelector('.modal-box').scrollTop = 0;
+}
 
-  // Disable button & show spinner
-  const btn = document.getElementById('submitBtn');
+function goBackToForm() {
+  setStep(1);
+  document.querySelector('.modal-box').scrollTop = 0;
+}
+
+// ── Final submission (step 2) ──
+async function submitFull() {
+  const screenshot = document.getElementById('paymentScreenshot').files[0];
+  const chimeTag   = document.getElementById('f_chime_tag').value.trim();
+
+  if (!screenshot) { showToast('⚠️ Please upload your payment screenshot'); return; }
+  if (!chimeTag)   { showToast('⚠️ Please enter your Chime tag or name'); return; }
+
+  const btn = document.getElementById('step2Btn');
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span>Submitting…';
 
+  // Build payload
+  const email = document.getElementById('f_email').value.trim();
+  const vcat  = document.getElementById('f_vendor_cat').value;
+  const size  = document.getElementById('f_size').value;
+  const days  = ['day_fri','day_sat','day_sun'].filter(d => document.getElementById(d).checked).map(d => document.getElementById(d).value);
+  const pricePerDay = PRICING[vcat][size];
+  const total = pricePerDay * days.length;
+
+  const payload = {
+    device_id:            email,
+    event:                '2026 Atlanta Summer Farmers Market',
+    event_dates:          'June 12–14, 2026',
+    submitted_at:         new Date().toISOString(),
+    business_name:        document.getElementById('f_name').value.trim(),
+    phone:                document.getElementById('f_phone').value.trim(),
+    email:                email,
+    items_description:    document.getElementById('f_items').value.trim(),
+    vendor_category:      vcat === 'service' ? 'Service/Product Vendor' : 'Food Vendor',
+    booth_size:           size,
+    price_per_day:        '$' + pricePerDay,
+    days_selected:        days,
+    total_amount:         '$' + total.toFixed(2),
+    vendor_type:          document.getElementById('f_vendor_type').value,
+    payment_method:       'Chime',
+    chime_sent_to:        '$Laura-Ramirez-195',
+    applicant_chime_tag:  chimeTag,
+    payment_screenshot:   screenshot.name,
+    special_accommodations: document.getElementById('f_accommodations').value,
+    needs_setup_help:     document.getElementById('f_setup_help').value,
+    agreed_to_terms:      document.getElementById('f_terms').value,
+    final_agreement:      document.getElementById('f_agreement').value,
+    status:               'pending_review'
+  };
+
   try {
     const deviceId = await saveToFirebase(payload);
-
-    // Show success
-    document.getElementById('formState').style.display = 'none';
-    document.getElementById('successState').style.display = 'block';
-    document.getElementById('refCode').textContent = `Application ID: ${deviceId.toUpperCase().slice(0,16)}`;
-    document.querySelector('.modal-header p').textContent = 'Application submitted successfully!';
-
+    document.getElementById('refCode').textContent = 'Application ID: ' + deviceId.toUpperCase().slice(0,18);
+    document.getElementById('modalHeaderTitle').textContent = 'Application Submitted!';
+    document.getElementById('modalHeaderSub').textContent = 'Thank you — we will review and confirm shortly';
+    setStep(3);
+    document.querySelector('.modal-box').scrollTop = 0;
   } catch (err) {
-    console.error('Firebase error:', err);
+    console.error(err);
     showToast('❌ Submission failed. Please try again.');
     btn.disabled = false;
-    btn.innerHTML = 'Submit Application →';
+    btn.innerHTML = 'Submit Payment Proof ✓';
   }
 }
 
+// ── Reset form ──
 function resetForm() {
-  document.getElementById('formState').style.display = 'block';
-  document.getElementById('successState').style.display = 'none';
-  document.querySelector('.modal-header p').textContent = '2026 Atlanta Summer Farmers Market · June 12–14, 2026';
-  // Reset all fields
-  ['f_name','f_phone','f_email','f_items','f_size','f_vendor_type','f_payment','f_accommodations','f_accessible','f_setup_help','f_terms','f_agreement'].forEach(id => {
+  setStep(1);
+  document.getElementById('modalHeaderTitle').textContent = 'Vendor Application Form';
+  document.getElementById('modalHeaderSub').textContent = '2026 Atlanta Summer Farmers Market · June 12–14, 2026';
+  ['f_name','f_phone','f_email','f_items','f_vendor_cat','f_size','f_price_per_day','f_vendor_type','f_payment','f_accommodations','f_setup_help','f_terms','f_agreement','f_chime_tag'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.value = '';
+    if (el) el.value = id === 'f_payment' ? 'Chime' : '';
   });
   ['day_fri','day_sat','day_sun','day_all'].forEach(d => { document.getElementById(d).checked = false; });
   document.querySelectorAll('.radio-opt,.check-opt,.size-opt').forEach(el => el.classList.remove('selected'));
-  const btn = document.getElementById('submitBtn');
+  document.getElementById('chime_opt').classList.add('selected');
+  ['price_10x10','price_10x20','price_truck'].forEach(id => document.getElementById(id).textContent = '—');
+  document.getElementById('sizeHint').style.display = 'block';
+  document.getElementById('uploadPreview').style.display = 'none';
+  document.getElementById('uploadFilename').style.display = 'none';
+  document.getElementById('paymentScreenshot').value = '';
+  const btn = document.getElementById('step2Btn');
   btn.disabled = false;
-  btn.innerHTML = 'Submit Application →';
+  btn.innerHTML = 'Submit Payment Proof ✓';
 }
 
 // Initialize
