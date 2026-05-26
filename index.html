@@ -324,6 +324,30 @@ img{display:block;max-width:100%;}
 .share-opt:hover{border-color:var(--green);color:var(--green);}
 .share-opt .sicon{font-size:24px;margin-bottom:4px;}
 
+/* ── Approval screen ── */
+.approval-spinner{width:64px;height:64px;border:4px solid #dcfce7;border-top-color:var(--green);border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 20px;}
+.approval-title{font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;color:var(--green);margin-bottom:8px;}
+.approval-sub{font-size:14px;color:var(--text-l);margin-bottom:20px;}
+.approval-dots{display:flex;justify-content:center;gap:8px;}
+.approval-dots span{width:8px;height:8px;background:var(--green-l);border-radius:50%;animation:dotbounce 1.2s infinite ease-in-out;}
+.approval-dots span:nth-child(1){animation-delay:0s;}
+.approval-dots span:nth-child(2){animation-delay:.2s;}
+.approval-dots span:nth-child(3){animation-delay:.4s;}
+@keyframes dotbounce{0%,80%,100%{transform:scale(0.6);opacity:.4;}40%{transform:scale(1.1);opacity:1;}}
+.approved-icon{width:80px;height:80px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;animation:popIn .4s cubic-bezier(.175,.885,.32,1.275);}
+@keyframes popIn{0%{transform:scale(0);}100%{transform:scale(1);}}
+.approved-badge{display:inline-block;background:#dcfce7;color:#14532d;font-size:13px;font-weight:700;padding:4px 14px;border-radius:50px;border:1.5px solid #86efac;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px;}
+.approved-name{font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;color:var(--text);margin-bottom:8px;}
+.approved-msg{font-size:14px;color:var(--text-l);line-height:1.7;max-width:380px;margin:0 auto;}
+.approved-details{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:16px;}
+.approved-detail-chip{background:#f5f7f3;border:1px solid var(--border);border-radius:50px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--text-l);}
+
+/* ── Copy Chime button ── */
+.chime-tag-big{font-family:monospace;font-size:20px;font-weight:700;color:var(--green);background:#fff;border:1.5px solid #86efac;border-radius:10px;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin:10px 0;letter-spacing:.5px;}
+.copy-chime-btn{display:inline-flex;align-items:center;gap:5px;background:var(--green);color:#fff;border:none;border-radius:50px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s;white-space:nowrap;flex-shrink:0;}
+.copy-chime-btn:hover{background:var(--green-h);}
+.copy-chime-btn.copied{background:#16a34a;}
+
 /* ── Spinner ── */
 .spinner{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px;}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -642,9 +666,11 @@ footer{background:var(--footer);color:#a7c9b5;}
     <div class="step-bar">
       <div class="step-item active" id="stepItem1"><div class="step-num">1</div> Application</div>
       <div class="step-sep" id="stepSep1"></div>
-      <div class="step-item" id="stepItem2"><div class="step-num">2</div> Payment</div>
+      <div class="step-item" id="stepItem2"><div class="step-num">2</div> Review</div>
       <div class="step-sep" id="stepSep2"></div>
-      <div class="step-item" id="stepItem3"><div class="step-num">3</div> Confirmation</div>
+      <div class="step-item" id="stepItem3"><div class="step-num">3</div> Payment</div>
+      <div class="step-sep" id="stepSep3"></div>
+      <div class="step-item" id="stepItem4"><div class="step-num">4</div> Confirmation</div>
     </div>
 
     <div class="modal-body">
@@ -806,8 +832,28 @@ footer{background:var(--footer);color:#a7c9b5;}
         <div class="form-note">Your email is used as your account identifier for this application.</div>
       </div>
 
-      <!-- ===== STEP 2: PAYMENT ===== -->
-      <div id="step2" style="display:none;" class="payment-step">
+      <!-- ===== STEP 1.5: APPROVAL SCREEN ===== -->
+      <div id="stepApproval" style="display:none;">
+        <div id="approvalLoading" style="text-align:center;padding:40px 20px;">
+          <div class="approval-spinner"></div>
+          <div class="approval-title" id="approvalTitle">Reviewing your application…</div>
+          <div class="approval-sub" id="approvalSub">Please wait while we check your details</div>
+          <div class="approval-dots"><span></span><span></span><span></span></div>
+        </div>
+        <div id="approvalSuccess" style="display:none;text-align:center;padding:32px 20px;">
+          <div class="approved-icon">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="approved-badge">Application Approved!</div>
+          <h3 class="approved-name" id="approvedName"></h3>
+          <p class="approved-msg">Your vendor application has been approved. Please proceed to complete your Chime payment to secure your booth.</p>
+          <div class="approved-details" id="approvedDetails"></div>
+          <button class="submit-btn" style="max-width:320px;margin:24px auto 0;" onclick="revealPaymentStep()">Proceed to Payment →</button>
+        </div>
+      </div>
+
+      <!-- ===== STEP 3: PAYMENT ===== -->
+      <div id="step3" style="display:none;" class="payment-step">
 
         <div class="amount-display">
           <div class="amount-label">Total Amount Due</div>
@@ -819,7 +865,13 @@ footer{background:var(--footer);color:#a7c9b5;}
           <h4>📱 How to Pay via Chime</h4>
           <div class="pay-step-row"><div class="pay-step-num">1</div><div>Open your Chime app and tap <strong>Pay Anyone</strong> or <strong>Send Money</strong></div></div>
           <div class="pay-step-row"><div class="pay-step-num">2</div><div>Search for the Chime tag below and send the exact amount shown above</div></div>
-          <div class="chime-tag-big">$Laura-Ramirez-195</div>
+          <div class="chime-tag-big">
+            $Laura-Ramirez-195
+            <button class="copy-chime-btn" onclick="copyChimeTag(this)" title="Copy tag">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copy</span>
+            </button>
+          </div>
           <div class="pay-step-row"><div class="pay-step-num">3</div><div>In the memo/note, write your <strong>business name</strong> and <strong>event dates</strong></div></div>
           <div class="pay-step-row"><div class="pay-step-num">4</div><div>Take a screenshot of the <strong>successful payment confirmation</strong></div></div>
           <div class="pay-step-row"><div class="pay-step-num">5</div><div>Upload the screenshot and enter your Chime tag below</div></div>
@@ -842,12 +894,12 @@ footer{background:var(--footer);color:#a7c9b5;}
           <input type="text" id="f_chime_tag" placeholder="e.g. $YourName-123 or your Chime display name">
         </div>
 
-        <button class="submit-btn" id="step2Btn" onclick="submitFull()">Submit Payment Proof ✓</button>
+        <button class="submit-btn" id="step3Btn" onclick="submitFull()">Submit Payment Proof ✓</button>
         <button class="back-btn" onclick="goBackToForm()">← Go back to edit application</button>
       </div>
 
-      <!-- ===== STEP 3: SUCCESS ===== -->
-      <div id="step3" style="display:none;">
+      <!-- ===== STEP 4: SUCCESS ===== -->
+      <div id="step4" style="display:none;">
         <div class="success-inner">
           <div class="success-icon">✅</div>
           <h3>Application &amp; Payment Submitted!</h3>
@@ -1117,24 +1169,47 @@ function handleFileUpload(input) {
   reader.readAsDataURL(file);
 }
 
-// ── Count days ──
-function countDays() {
-  return ['day_fri','day_sat','day_sun'].filter(d => document.getElementById(d).checked).length;
+// ── Copy Chime tag ──
+function copyChimeTag(btn) {
+  navigator.clipboard.writeText('$Laura-Ramirez-195').catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = '$Laura-Ramirez-195';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+  btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Copied!</span>';
+  btn.classList.add('copied');
+  setTimeout(() => {
+    btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span>';
+    btn.classList.remove('copied');
+  }, 2500);
 }
 
-// ── Step navigation ──
-function setStep(n) {
-  [1,2,3].forEach(i => {
-    document.getElementById('step'+i).style.display = i === n ? 'block' : 'none';
-    const item = document.getElementById('stepItem'+i);
-    item.classList.remove('active','done');
-    if (i < n) item.classList.add('done');
-    else if (i === n) item.classList.add('active');
-    if (i < 3) {
-      const sep = document.getElementById('stepSep'+i);
-      sep.classList.toggle('done', i < n);
-    }
+// ── Step navigation (4 steps: 1=form, approval=interim, 3=payment, 4=success) ──
+function setVisibleStep(active) {
+  // active: 'step1' | 'stepApproval' | 'step3' | 'step4'
+  ['step1','stepApproval','step3','step4'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = id === active ? 'block' : 'none';
   });
+
+  // Update step bar indicators
+  // stepItem1 = Application, stepItem2 = Review, stepItem3 = Payment, stepItem4 = Confirmation
+  const stepMap = { step1: 1, stepApproval: 2, step3: 3, step4: 4 };
+  const current = stepMap[active] || 1;
+  for (let i = 1; i <= 4; i++) {
+    const item = document.getElementById('stepItem' + i);
+    if (!item) continue;
+    item.classList.remove('active', 'done');
+    if (i < current) item.classList.add('done');
+    else if (i === current) item.classList.add('active');
+    if (i < 4) {
+      const sep = document.getElementById('stepSep' + i);
+      if (sep) sep.classList.toggle('done', i < current);
+    }
+  }
 }
 
 function goToPaymentStep() {
@@ -1165,24 +1240,64 @@ function goToPaymentStep() {
   if (!terms)  { showToast('⚠️ Agree to the terms'); return; }
   if (agree !== 'I agree') { showToast('⚠️ You must agree to submit'); return; }
 
-  // Calculate total
-  const pricePerDay = PRICING[vcat][size];
-  const total = pricePerDay * days;
-  const catLabel = vcat === 'service' ? 'Service/Product Vendor' : 'Food Vendor';
-  document.getElementById('totalAmount').textContent = '$' + total.toFixed(2);
-  document.getElementById('amountBreakdown').textContent =
-    `${catLabel} · ${size} · $${pricePerDay}/day × ${days} day${days>1?'s':''}`;
+  // Show approval loading screen
+  document.getElementById('approvalLoading').style.display = 'block';
+  document.getElementById('approvalSuccess').style.display = 'none';
+  setVisibleStep('stepApproval');
+  document.querySelector('.modal-box').scrollTop = 0;
 
-  setStep(2);
+  // Simulate review: 3.5s loading → 1.5s approved → then show payment button
+  setTimeout(() => {
+    document.getElementById('approvalTitle').textContent = 'Almost there…';
+    document.getElementById('approvalSub').textContent = 'Verifying booth availability';
+  }, 1200);
+
+  setTimeout(() => {
+    document.getElementById('approvalTitle').textContent = 'Finalizing approval…';
+    document.getElementById('approvalSub').textContent = 'Confirming your spot at Patterson Park';
+  }, 2500);
+
+  setTimeout(() => {
+    // Switch to approved success view
+    document.getElementById('approvalLoading').style.display = 'none';
+    document.getElementById('approvalSuccess').style.display = 'block';
+    document.querySelector('.modal-box').scrollTop = 0;
+
+    // Populate approval card details
+    const vcat  = document.getElementById('f_vendor_cat').value;
+    const size  = document.getElementById('f_size').value;
+    const pricePerDay = PRICING[vcat][size];
+    const daysCount   = countDays();
+    const catLabel    = vcat === 'service' ? 'Service/Product Vendor' : 'Food Vendor';
+    const daysSelected = ['day_fri','day_sat','day_sun'].filter(d => document.getElementById(d).checked).map(d => document.getElementById(d).value);
+
+    document.getElementById('approvedName').textContent = document.getElementById('f_name').value.trim();
+    document.getElementById('approvedDetails').innerHTML = [
+      `<div class="approved-detail-chip">📦 ${catLabel}</div>`,
+      `<div class="approved-detail-chip">📐 ${size}</div>`,
+      `<div class="approved-detail-chip">📅 ${daysSelected.join(' · ')}</div>`,
+      `<div class="approved-detail-chip">💵 $${(pricePerDay * daysCount).toFixed(2)} total</div>`
+    ].join('');
+
+    // Pre-fill payment step amount
+    document.getElementById('totalAmount').textContent = '$' + (pricePerDay * daysCount).toFixed(2);
+    document.getElementById('amountBreakdown').textContent =
+      `${catLabel} · ${size} · $${pricePerDay}/day × ${daysCount} day${daysCount > 1 ? 's' : ''}`;
+
+  }, 3800);
+}
+
+function revealPaymentStep() {
+  setVisibleStep('step3');
   document.querySelector('.modal-box').scrollTop = 0;
 }
 
 function goBackToForm() {
-  setStep(1);
+  setVisibleStep('step1');
   document.querySelector('.modal-box').scrollTop = 0;
 }
 
-// ── Final submission (step 2) ──
+// ── Final submission (step 3) ──
 async function submitFull() {
   const screenshot = document.getElementById('paymentScreenshot').files[0];
   const chimeTag   = document.getElementById('f_chime_tag').value.trim();
@@ -1190,11 +1305,10 @@ async function submitFull() {
   if (!screenshot) { showToast('⚠️ Please upload your payment screenshot'); return; }
   if (!chimeTag)   { showToast('⚠️ Please enter your Chime tag or name'); return; }
 
-  const btn = document.getElementById('step2Btn');
+  const btn = document.getElementById('step3Btn');
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span>Submitting…';
 
-  // Build payload
   const email = document.getElementById('f_email').value.trim();
   const vcat  = document.getElementById('f_vendor_cat').value;
   const size  = document.getElementById('f_size').value;
@@ -1203,37 +1317,37 @@ async function submitFull() {
   const total = pricePerDay * days.length;
 
   const payload = {
-    device_id:            email,
-    event:                '2026 Atlanta Summer Farmers Market',
-    event_dates:          'June 12–14, 2026',
-    submitted_at:         new Date().toISOString(),
-    business_name:        document.getElementById('f_name').value.trim(),
-    phone:                document.getElementById('f_phone').value.trim(),
-    email:                email,
-    items_description:    document.getElementById('f_items').value.trim(),
-    vendor_category:      vcat === 'service' ? 'Service/Product Vendor' : 'Food Vendor',
-    booth_size:           size,
-    price_per_day:        '$' + pricePerDay,
-    days_selected:        days,
-    total_amount:         '$' + total.toFixed(2),
-    vendor_type:          document.getElementById('f_vendor_type').value,
-    payment_method:       'Chime',
-    chime_sent_to:        '$Laura-Ramirez-195',
-    applicant_chime_tag:  chimeTag,
-    payment_screenshot:   screenshot.name,
+    device_id:              email,
+    event:                  '2026 Atlanta Summer Farmers Market',
+    event_dates:            'June 12–14, 2026',
+    submitted_at:           new Date().toISOString(),
+    business_name:          document.getElementById('f_name').value.trim(),
+    phone:                  document.getElementById('f_phone').value.trim(),
+    email:                  email,
+    items_description:      document.getElementById('f_items').value.trim(),
+    vendor_category:        vcat === 'service' ? 'Service/Product Vendor' : 'Food Vendor',
+    booth_size:             size,
+    price_per_day:          '$' + pricePerDay,
+    days_selected:          days,
+    total_amount:           '$' + total.toFixed(2),
+    vendor_type:            document.getElementById('f_vendor_type').value,
+    payment_method:         'Chime',
+    chime_sent_to:          '$Laura-Ramirez-195',
+    applicant_chime_tag:    chimeTag,
+    payment_screenshot:     screenshot.name,
     special_accommodations: document.getElementById('f_accommodations').value,
-    needs_setup_help:     document.getElementById('f_setup_help').value,
-    agreed_to_terms:      document.getElementById('f_terms').value,
-    final_agreement:      document.getElementById('f_agreement').value,
-    status:               'pending_review'
+    needs_setup_help:       document.getElementById('f_setup_help').value,
+    agreed_to_terms:        document.getElementById('f_terms').value,
+    final_agreement:        document.getElementById('f_agreement').value,
+    status:                 'pending_review'
   };
 
   try {
     const deviceId = await saveToFirebase(payload);
-    document.getElementById('refCode').textContent = 'Application ID: ' + deviceId.toUpperCase().slice(0,18);
+    document.getElementById('refCode').textContent = 'Application ID: ' + deviceId.toUpperCase().slice(0, 18);
     document.getElementById('modalHeaderTitle').textContent = 'Application Submitted!';
     document.getElementById('modalHeaderSub').textContent = 'Thank you — we will review and confirm shortly';
-    setStep(3);
+    setVisibleStep('step4');
     document.querySelector('.modal-box').scrollTop = 0;
   } catch (err) {
     console.error(err);
@@ -1245,7 +1359,7 @@ async function submitFull() {
 
 // ── Reset form ──
 function resetForm() {
-  setStep(1);
+  setVisibleStep('step1');
   document.getElementById('modalHeaderTitle').textContent = 'Vendor Application Form';
   document.getElementById('modalHeaderSub').textContent = '2026 Atlanta Summer Farmers Market · June 12–14, 2026';
   ['f_name','f_phone','f_email','f_items','f_vendor_cat','f_size','f_price_per_day','f_vendor_type','f_payment','f_accommodations','f_setup_help','f_terms','f_agreement','f_chime_tag'].forEach(id => {
@@ -1260,7 +1374,11 @@ function resetForm() {
   document.getElementById('uploadPreview').style.display = 'none';
   document.getElementById('uploadFilename').style.display = 'none';
   document.getElementById('paymentScreenshot').value = '';
-  const btn = document.getElementById('step2Btn');
+  document.getElementById('approvalLoading').style.display = 'block';
+  document.getElementById('approvalSuccess').style.display = 'none';
+  document.getElementById('approvalTitle').textContent = 'Reviewing your application…';
+  document.getElementById('approvalSub').textContent = 'Please wait while we check your details';
+  const btn = document.getElementById('step3Btn');
   btn.disabled = false;
   btn.innerHTML = 'Submit Payment Proof ✓';
 }
